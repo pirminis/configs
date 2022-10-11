@@ -45,11 +45,11 @@ xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
-" previous buffer
-nmap <Backspace> :bprevious<CR>
+" previous tab
+nmap <Backspace> gT<CR>
 
-" next buffer
-nmap <S-Backspace> :bnext<CR>
+" next tab
+nmap <S-Backspace> gt<CR>
 
 " clear all folds
 nmap <leader>z zRzz
@@ -65,7 +65,7 @@ nmap gs  <plug>(GrepperOperator)
 xmap gs  <plug>(GrepperOperator)
 
 " open .vimrc
-nmap ,g :e $MYVIMRC<CR>
+nmap ,g :tabe $MYVIMRC<CR>
 
 " reload config file
 nmap ,s :w<CR>:source $MYVIMRC<CR>
@@ -134,10 +134,10 @@ nmap th ^
 vmap th ^
 
 " goto declaration [1]
-nmap <leader>j <C-]>
+nmap <leader>j <C-w><C-]><C-w>T
 
 " return from [1]
-nmap <leader>k <C-o>
+nmap <leader>k <C-w><C-n><C-w>T<C-o><C-o>
 
 " redo
 nmap <S-u> <C-R>
@@ -163,10 +163,10 @@ vnoremap r >gv
 " escape insert mode in insert mode
 imap jk <esc>
 
-" close buffer
+" close current buffer
 nnoremap - :bd<CR>
 
-" force close buffer
+" force close current buffer
 nmap _ :bd!<CR>
 
 " close quickfix window
@@ -204,7 +204,7 @@ set shiftwidth  =2
 set softtabstop =2
 set tags        =./tags,tags;
 set wildmode    =longest:full,full
-set guifont     =absurdmono:h13
+set guifont     =jetmono:h13
 set antialias
 set guicursor  +=a:blinkon0
 set lines       =999
@@ -326,6 +326,7 @@ let g:airline_theme                                 = "sol"
 let g:airline#extensions#tabline#enabled            = 1
 let g:airline#extensions#tabline#fnamemod           = ':t'
 let g:airline#extensions#ale#enabled                = 1
+let g:airline#extensions#tabline#show_splits        = 0
 let g:gutentags_enabled                             = 1
 let g:gutentags_ctags_exclude                       = ["tmp/*", "log/*", "vendor/*", "test/*", ".git/*", "*.scss", "*.css", "public/assets/*"]
 let g:gutentags_generate_on_missing                 = 1
@@ -364,6 +365,7 @@ let g:solarized_visibility                          = "low"
 "   \ 'exit': 'RestoreStatusLine'
 "   \ }
 let g:fzf_layout = { 'down': '~40%' }
+let g:fzf_action = { 'enter': 'tab split' }
 let g:fzf_preview_window = ''
 let g:fzf_colors =
 \ { 'hl':      ['fg', 'String'],
